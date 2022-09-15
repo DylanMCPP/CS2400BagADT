@@ -9,6 +9,10 @@ public class ArrayBag<T> implements BagInterface<T> {
     private boolean verifyIntegrity = false;
     
 
+    public ArrayBag() {
+        this(defaultCapacity);
+    }
+
     public ArrayBag(int capacity) {
         if (capacity <= maximumCapacity) {
             @SuppressWarnings("unchecked")
