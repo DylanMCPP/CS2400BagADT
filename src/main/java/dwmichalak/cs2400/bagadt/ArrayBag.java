@@ -1,12 +1,13 @@
 package dwmichalak.cs2400.bagadt;
 
+import java.util.Arrays;
+
 public class ArrayBag<T> implements BagInterface<T> {
 
     private T[] bag;
     private static final int defaultCapacity = 20;
     private int entryCount = 0;
     private static final int maximumCapacity = 20480;
-    private boolean verifyIntegrity = false;
     
 
     public ArrayBag() {
@@ -18,7 +19,6 @@ public class ArrayBag<T> implements BagInterface<T> {
             @SuppressWarnings("unchecked")
             T[] tempBag = (T[])new Object[capacity];
             bag = tempBag;
-            verifyIntegrity = true;
         }
         else {
             throw new IllegalStateException("Specified bag capacity exceeds the allowed maximum");
@@ -29,7 +29,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return an integer, the number of objects in the bag
      */
     public int getCurrentSize() {
-        return 0;
+        return entryCount;
     }
 
     /**
@@ -37,17 +37,29 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true if there are any objects in the bag, otherwise false
      */
     public boolean isEmpty() {
-        return false;
+        return entryCount == 0;
     }
 
     /**
-     * adds an object to some location in the bag
+     * adds an object to the first empty location in the bag
      * @param newEntry the Object to be added to the bag
      * @return true if the add is successful, otherwise false
      */
     public boolean add(T newEntry) {
-        return false;
+        if (entryCount == bag.length)
+            bag = Arrays.copyOf(bag, 2*bag.length);
+        
+        int i = 0;
+        while(bag[i] != null) {
+            i++;
+        }
+
+        bag[i] = newEntry;
+        entryCount++;
+        //System.out.println(bag[i]);
+        return true;
     }
+
 
     /**
      * removes the first object from the bag and returns it

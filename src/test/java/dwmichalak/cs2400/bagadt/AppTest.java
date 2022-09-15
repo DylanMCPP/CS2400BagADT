@@ -1,4 +1,4 @@
-package com.dwmichalak.cs2400.practice;
+package dwmichalak.cs2400.bagadt;
 
 import static org.junit.Assert.assertTrue;
 
