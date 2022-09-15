@@ -74,7 +74,7 @@ public class ArrayBag<T> implements BagInterface<T> {
 
         T removed = bag[i];
         bag[i] = null;
-        entryCount++;
+        entryCount--;
 
         return removed;
     }
@@ -85,6 +85,13 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true, if successful
      */
     public boolean remove(T anEntry) {
+        for (int i = 0; i < bag.length; i++) {
+            if (bag[i].equals(anEntry)) {
+                bag[i] = null;
+                entryCount--;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -92,7 +99,9 @@ public class ArrayBag<T> implements BagInterface<T> {
      * clears all entries from the bag
      */
     public void clear() {
-
+        for (int i = 0; i < bag.length; i++) {
+            bag[i] = null;
+        }
     }
 
     /**
@@ -101,7 +110,12 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return an int, the number of times the entry appears in the bag
      */
     public int getFrequencyOf(T anEntry) {
-        return 0;
+        int frequency = 0;
+        for (T entry: bag) {
+            if (entry.equals(anEntry))
+                frequency++;
+        }
+        return frequency;
     }
 
     /**
@@ -110,6 +124,10 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true, if at least 1 instance of anEntry appears in the bag
      */
     public boolean contains(T anEntry) {
+        for (T entry: bag) {
+            if (entry.equals(anEntry))
+                return true;
+        }
         return false;
     }
 
