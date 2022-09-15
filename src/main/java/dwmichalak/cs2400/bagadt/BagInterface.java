@@ -27,13 +27,35 @@ public interface BagInterface<T> {
      */
     public T remove();
 
+    /**
+     * removes one instance of anEntry from the bag
+     * @param anEntry the object reference to be removed
+     * @return true, if successful
+     */
     public boolean remove(T anEntry);
 
+    /**
+     * clears all entries from the bag
+     */
     public void clear();
 
+    /**
+     * shows the number of times anEntry appears in the bag
+     * @param anEntry the entry that will have its frequency counted
+     * @return an int, the number of times the entry appears in the bag
+     */
     public int getFrequencyOf(T anEntry);
 
+    /**
+     * shows whether or not anEntry exists in the bag
+     * @param anEntry the entry that will be searched for
+     * @return true, if at least 1 instance of anEntry appears in the bag
+     */
     public boolean contains(T anEntry);
 
+    /**
+     * allocates memory for a brand new array containing the contents of the bag
+     * @return the new array T[]
+     */
     public T[] toArray();
 }
