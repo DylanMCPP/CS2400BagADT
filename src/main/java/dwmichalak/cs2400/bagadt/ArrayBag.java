@@ -66,7 +66,17 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return
      */
     public T remove() {
-        return (T)(Integer)0;
+        
+        int i = 0;
+        while(bag[i] == null) {
+            i++;
+        }
+
+        T removed = bag[i];
+        bag[i] = null;
+        entryCount++;
+
+        return removed;
     }
 
     /**
