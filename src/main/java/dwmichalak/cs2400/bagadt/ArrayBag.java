@@ -127,11 +127,14 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true, if at least 1 instance of anEntry appears in the bag
      */
     public boolean contains(T anEntry) {
-        for (T entry: bag) {
-            if (entry.equals(anEntry))
-                return true;
+        int i = 0;
+        boolean cont = false;
+        while (!bag[i].equals(anEntry) || i < bag.length) {
+                i++;
         }
-        return false;
+        if (bag[i].equals(anEntry)) 
+            cont = true;
+        return cont;
     }
 
     /**
