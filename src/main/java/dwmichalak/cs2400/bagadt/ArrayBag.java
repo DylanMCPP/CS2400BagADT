@@ -28,7 +28,8 @@ public class ArrayBag<T> implements BagInterface<T> {
             entryCount = 0;
         }
         else {
-            throw new IllegalStateException("Specified bag capacity exceeds the allowed maximum");
+            throw new IllegalStateException("Specified bag capacity" + 
+            "exceeds the allowed maximum");
         }
     }
     /** 
@@ -72,11 +73,14 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return
      */
     public T remove() {
-
-        T removed = bag[entryCount-1];
-        bag[entryCount-1] = null;
-        entryCount--;
-        return removed;
+        if (entryCount > 0) {
+            T removed = bag[entryCount-1];
+            bag[entryCount-1] = null;
+            entryCount--;
+            return removed;
+        } else
+            throw new IndexOutOfBoundsException("attempted to remove from" + 
+            "an empty bag");
     }
 
     /**
