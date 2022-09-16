@@ -136,6 +136,15 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return the new array T[]
      */
     public T[] toArray() {
-        return (T[])new Integer[1];
+        @SuppressWarnings("unchecked")
+        T[] newArray = (T[])new Object[entryCount];
+        int counter = 0;
+        for(T entry: bag) {
+            if (entry != null) {
+                newArray[counter] = entry;
+                counter++;
+            }
+        }
+        return newArray;
     }
 }
