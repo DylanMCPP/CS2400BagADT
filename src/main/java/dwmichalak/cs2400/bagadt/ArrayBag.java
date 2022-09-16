@@ -59,12 +59,8 @@ public class ArrayBag<T> implements BagInterface<T> {
             } else
                 return false;
         }
-        int i = 0;
-        while(bag[i] != null) {
-            i++;
-        }
 
-        bag[i] = newEntry;
+        bag[entryCount] = newEntry;
         entryCount++;
         //System.out.println(bag[i]);
         return true;
@@ -72,20 +68,14 @@ public class ArrayBag<T> implements BagInterface<T> {
 
 
     /**
-     * removes the first object from the bag and returns it
+     * removes the last object from the bag and returns it
      * @return
      */
     public T remove() {
-        
-        int i = 0;
-        while(bag[i] == null) {
-            i++;
-        }
 
-        T removed = bag[i];
-        bag[i] = null;
+        T removed = bag[entryCount-1];
+        bag[entryCount-1] = null;
         entryCount--;
-
         return removed;
     }
 
