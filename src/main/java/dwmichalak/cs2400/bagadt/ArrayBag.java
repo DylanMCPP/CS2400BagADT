@@ -87,7 +87,7 @@ public class ArrayBag<T> implements BagInterface<T> {
     public boolean remove(T anEntry) {
         int i = 0;
         boolean succ = false;
-        while (!bag[i].equals(anEntry) || i < bag.length) {
+        while (!bag[i].equals(anEntry) && i < entryCount) {
                 i++;
         }
         if (bag[i].equals(anEntry)) {
@@ -134,7 +134,7 @@ public class ArrayBag<T> implements BagInterface<T> {
     public boolean contains(T anEntry) {
         int i = 0;
         boolean cont = false;
-        while (!bag[i].equals(anEntry) || i < bag.length) {
+        while (!bag[i].equals(anEntry) && i < bag.length) {
                 i++;
         }
         if (bag[i].equals(anEntry)) 
