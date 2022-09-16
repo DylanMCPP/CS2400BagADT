@@ -85,14 +85,22 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true, if successful
      */
     public boolean remove(T anEntry) {
-        for (int i = 0; i < bag.length; i++) {
-            if (bag[i].equals(anEntry)) {
-                bag[i] = null;
-                entryCount--;
-                return true;
-            }
+        int i = 0;
+        boolean succ = false;
+        while (!bag[i].equals(anEntry) || i < bag.length) {
+                i++;
         }
-        return false;
+        if (bag[i].equals(anEntry)) {
+            bag[i] = null;
+            for (int c = i; c < entryCount; c++) {
+                T temp = bag[c+1];
+                bag[c+1] = null;
+                bag[c] = temp;
+            }
+            entryCount--;
+            succ = true;
+        }     
+        return succ;
     }
 
     /**
