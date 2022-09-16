@@ -46,9 +46,12 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true if the add is successful, otherwise false
      */
     public boolean add(T newEntry) {
-        if (entryCount == bag.length)
-            bag = Arrays.copyOf(bag, 2*bag.length);
-        
+        if (entryCount == bag.length) {
+            if (2*bag.length < maximumCapacity) {
+                bag = Arrays.copyOf(bag, 2*bag.length);
+            } else
+                return false;
+        }
         int i = 0;
         while(bag[i] != null) {
             i++;
