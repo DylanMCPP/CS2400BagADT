@@ -134,7 +134,7 @@ public class ArrayBag<T> implements BagInterface<T> {
     public boolean contains(T anEntry) {
         int i = 0;
         boolean cont = false;
-        while (!bag[i].equals(anEntry) && i < bag.length) {
+        while (!bag[i].equals(anEntry) && i < entryCount) {
                 i++;
         }
         if (bag[i].equals(anEntry)) 
@@ -148,14 +148,13 @@ public class ArrayBag<T> implements BagInterface<T> {
      */
     public T[] toArray() {
         @SuppressWarnings("unchecked")
-        T[] newArray = (T[])new Object[entryCount];
-        int counter = 0;
-        for(T entry: bag) {
-            if (entry != null) {
-                newArray[counter] = entry;
-                counter++;
-            }
+        T[] newArray = (T[])new Object[entryCount]; //cast is okay because it works for bag already
+        
+        //moves bag contents into newArray with no empty spaces
+        for(int i = 0; i < entryCount; i++) {
+            newArray[i] = bag[i];
         }
+        
         return newArray;
     }
 }
