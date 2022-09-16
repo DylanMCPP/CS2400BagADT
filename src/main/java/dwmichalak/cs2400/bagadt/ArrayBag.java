@@ -6,19 +6,26 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     private T[] bag;
     private static final int defaultCapacity = 20;
-    private int entryCount = 0;
+    private int entryCount;
     private static final int maximumCapacity = 20480;
     
-
+    /**
+     * creates an empty bag with a capacity of 20
+     */
     public ArrayBag() {
         this(defaultCapacity);
     }
 
+    /**
+     * creates an empty bag with the specified capacity
+     * @param capacity the starting capacity desired
+     */
     public ArrayBag(int capacity) {
         if (capacity <= maximumCapacity) {
             @SuppressWarnings("unchecked")
-            T[] tempBag = (T[])new Object[capacity];
+            T[] tempBag = (T[])new Object[capacity]; //cast is okay because all values in new Array are null
             bag = tempBag;
+            entryCount = 0;
         }
         else {
             throw new IllegalStateException("Specified bag capacity exceeds the allowed maximum");
