@@ -7,6 +7,7 @@ public class ArrayBag<T> implements BagInterface<T> {
     private T[] bag;
     private static final int defaultCapacity = 20;
     private int entryCount;
+    private boolean integrityOK = false;
     private static final int maximumCapacity = 20480;
     
     /**
@@ -26,11 +27,18 @@ public class ArrayBag<T> implements BagInterface<T> {
             T[] tempBag = (T[])new Object[capacity]; //cast is okay because all values in new Array are null
             bag = tempBag;
             entryCount = 0;
+            integrityOK = true;
         }
         else {
             throw new IllegalStateException("Specified bag capacity" + 
             "exceeds the allowed maximum");
         }
+    }
+
+    //throws exception if bag is not initialized
+    private void checkIntegrity() {
+        if (!integrityOK)
+            throw new SecurityException("ArrayBag object is corrupt.");
     }
     /** 
      * gets the current size of the bag
@@ -54,6 +62,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true if the add is successful, otherwise false
      */
     public boolean add(T newEntry) {
+        checkIntegrity();
         if (entryCount == bag.length) {
             if (2*bag.length < maximumCapacity) {
                 bag = Arrays.copyOf(bag, 2*bag.length);
