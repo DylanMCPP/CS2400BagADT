@@ -82,6 +82,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return
      */
     public T remove() {
+        checkIntegrity();
         if (entryCount > 0) {
             T removed = bag[entryCount-1];
             bag[entryCount-1] = null;
@@ -98,6 +99,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true, if successful
      */
     public boolean remove(T anEntry) {
+        checkIntegrity();
         int i = 0;
         boolean succ = false;
         while (!bag[i].equals(anEntry) && i < entryCount) {
@@ -120,6 +122,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * clears all entries from the bag
      */
     public void clear() {
+        checkIntegrity();
         for (int i = 0; i < bag.length; i++) {
             bag[i] = null;
         }
@@ -131,6 +134,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return an int, the number of times the entry appears in the bag
      */
     public int getFrequencyOf(T anEntry) {
+        checkIntegrity();
         int frequency = 0;
         for (T entry: bag) {
             if (entry.equals(anEntry))
@@ -145,6 +149,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return true, if at least 1 instance of anEntry appears in the bag
      */
     public boolean contains(T anEntry) {
+        checkIntegrity();
         int i = 0;
         boolean cont = false;
         while (!bag[i].equals(anEntry) && i < entryCount) {
@@ -160,6 +165,7 @@ public class ArrayBag<T> implements BagInterface<T> {
      * @return the new array T[]
      */
     public T[] toArray() {
+        checkIntegrity();
         @SuppressWarnings("unchecked")
         T[] newArray = (T[])new Object[entryCount]; //cast is okay because it works for bag already
         
